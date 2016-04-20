@@ -1,6 +1,6 @@
 # Budget-App
 
-Budget-App is an **expense tracking web app** that allows you to keep track and manage you money, and gives you complete control over your finances.
+Budget-App is an **expense tracking web app** that gives you complete control over your finances, using intelligent reports and contextual predictions to help you understand the way you use your money.
 
 ## Features
 
