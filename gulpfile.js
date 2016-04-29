@@ -8,6 +8,7 @@ var concat     = require('gulp-concat');
 var uglify     = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
 var nodemon    = require('gulp-nodemon');
+var livereload = require('gulp-livereload');
 
 // define a task called css
 gulp.task('css', function() {
@@ -17,7 +18,8 @@ gulp.task('css', function() {
     .pipe(less())
     .pipe(minifyCSS())
     .pipe(rename({ suffix: '.min'}))
-    .pipe(gulp.dest('public/assets/css'));
+    .pipe(gulp.dest('public/assets/css'))
+    .pipe(livereload());
 
 });
 
@@ -36,10 +38,12 @@ gulp.task('angular', function() {
     .pipe(ngAnnotate())
     .pipe(concat('all.js'))
     .pipe(uglify()) 
-    .pipe(gulp.dest('public/dist'));
+    .pipe(gulp.dest('public/dist'))
+    .pipe(livereload());
 });
 
 gulp.task('watch', function() {
+  livereload.listen();
   // watch the less file and run the css task
   gulp.watch('public/assets/css/style.less', ['css']);
   // watch js files and run lint and run js and angular tasks
