@@ -58,6 +58,8 @@ gulp.task('nodemon', function() {
     });
 });
 
+gulp.task('build', ['css', 'js', 'angular']);
+
 // defining the main gulp task
 gulp.task('default', ['nodemon']);
 
