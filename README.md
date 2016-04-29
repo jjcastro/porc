@@ -16,3 +16,10 @@ Budget-App helps you budget. Create budgets for different spending categories an
 * Multiple accounts including easy transfers.
 * Over 160 currencies and exchange rates supported.
 * Simple interactive reports.
+
+## Installation
+
+1. Install Node dependencies: `npm install`
+2. Change the configuration (config.js) to accommodate your setup.
+3. Start the application `nodemon server.js`
+4. Visit the application in your browser: [http://localhost:8080](http://localhost:8080)
