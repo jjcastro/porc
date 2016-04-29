@@ -1,6 +1,7 @@
 {
-  "name": "node-api",
-  "description": "",
+  "name": "budget-app",
+  "version" : "0.1"
+  "description" : "Expense tracking app with budgets"
   "main": "server.js",
   "authors": [
     "J.J. Castro <jj.castro10@uniandes.edu.co>"

@@ -20,10 +20,11 @@ Budget-App helps you budget. Create budgets for different spending categories an
 
 ## Installation
 
-1. Install Node dependencies: `npm install`
-2. Change the configuration (config.js) to accommodate your setup.
-3. Start the application `nodemon server.js` or using `gulp` to run automated linting/minifying
-4. Visit the application in your browser: [http://localhost:8080](http://localhost:8080)
+1. Install node dependencies: `npm install`
+2. Fetch bower dependencies: `bower install`
+3. Process LESS and JS files with gulp: `gulp build`
+4. To start the node server `node server.js`
+5. Visit the application in your browser: [http://localhost:8080](http://localhost:8080)
 
 ## Roadmap (features and things to come)
 
