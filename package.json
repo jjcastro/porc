@@ -30,7 +30,7 @@
     "jshint": "^2.9.2"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "test": "mocha",
     "postinstall": "bower install && gulp build"
   }
