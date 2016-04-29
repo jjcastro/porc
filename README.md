@@ -9,6 +9,7 @@ Budget-App helps you budget. Create budgets for different spending categories an
 * A clean, intuitive, and well thought-out design.
 * Quick and easy adding of transactions.
 * Customizable accounts and categories—you can select icons and colors.
+* Predictions: automatically suggests transactions and expenses for the time of day.
 * Color-coded tag system.
 * Built-in calculator and currency converter.
 * Automatic backup.
@@ -21,5 +22,11 @@ Budget-App helps you budget. Create budgets for different spending categories an
 
 1. Install Node dependencies: `npm install`
 2. Change the configuration (config.js) to accommodate your setup.
-3. Start the application `nodemon server.js`
+3. Start the application `nodemon server.js` or using `gulp` to run automated linting/minifying
 4. Visit the application in your browser: [http://localhost:8080](http://localhost:8080)
+
+## Roadmap (features and things to come)
+
+* iOS transcation oriented app with smart predictions (time, place, etc).
+
+

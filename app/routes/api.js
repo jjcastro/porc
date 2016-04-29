@@ -70,7 +70,8 @@ module.exports = function(app, express) {
 	        	name: user.name,
 	        	username: user.username
 	        }, superSecret, {
-	          expiresInMinutes: 1440 // expires in 24 hours
+	          expiresIn: "2 days" // expires in 2 days
+                                // this is using a rauchg/ms time span
 	        });
 
 	        // return the information including token as JSON
