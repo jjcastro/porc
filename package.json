@@ -10,6 +10,7 @@
     "morgan": "^1.7.0"
   },
   "devDependencies": {
+    "bower": "^1.7.9",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-jshint": "^2.0.0",
