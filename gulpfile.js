@@ -59,7 +59,7 @@ gulp.task('watch', function() {
   gulp.watch(['public/app/views/index.html', 'public/app/**/*.html'], ['html']);
 });
 
-gulp.task('build', ['css', 'js', 'angular']);
+gulp.task('build', ['css', 'js', 'angular', 'html']);
 
 // defining the main gulp task
 gulp.task('default', ['watch']);
