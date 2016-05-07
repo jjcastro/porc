@@ -4,6 +4,7 @@ var less       = require('gulp-less');
 var minifyCSS  = require('gulp-minify-css');
 var rename     = require('gulp-rename');
 var jshint     = require('gulp-jshint');
+var htmlhint     = require('gulp-htmlhint');
 var concat     = require('gulp-concat');
 var uglify     = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
@@ -43,7 +44,8 @@ gulp.task('angular', function() {
 
 gulp.task('html', function() {
   return gulp.src('public/app/views/**/*.html')
-    .pipe(gulp.dest(''))
+    .pipe(htmlhint())
+    .pipe(htmlhint.reporter())
     .pipe(livereload());
 });
 
@@ -54,7 +56,7 @@ gulp.task('watch', function() {
   // watch js files and run lint and run js and angular tasks
   gulp.watch(['public/app/*.js', 'public/app/**/*.js'], ['js', 'angular']);
   // watch html
-  gulp.watch(['public/app/views/index.html', 'public/app/**/*.html', 'public/app/**/**/*.html'], ['html']);
+  gulp.watch(['public/app/views/index.html', 'public/app/**/*.html'], ['html']);
 });
 
 gulp.task('build', ['css', 'js', 'angular']);
