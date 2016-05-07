@@ -7,7 +7,6 @@ var jshint     = require('gulp-jshint');
 var concat     = require('gulp-concat');
 var uglify     = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
-var nodemon    = require('gulp-nodemon');
 var livereload = require('gulp-livereload');
 
 // define a task called css
@@ -42,29 +41,24 @@ gulp.task('angular', function() {
     .pipe(livereload());
 });
 
+gulp.task('html', function() {
+  return gulp.src('public/app/views/**/*.html')
+    .pipe(gulp.dest(''))
+    .pipe(livereload());
+});
+
 gulp.task('watch', function() {
   livereload.listen();
   // watch the less file and run the css task
   gulp.watch('public/assets/css/style.less', ['css']);
   // watch js files and run lint and run js and angular tasks
-  gulp.watch(['server.js', 'public/app/*.js', 'public/app/**/*.js'], ['js', 'angular']);
-});
-
-// the nodemon task
-gulp.task('nodemon', function() {
-  nodemon({
-    script: 'server.js',
-    ext: 'js less html'
-  })
-    .on('start', ['watch'])
-    .on('change', ['watch'])
-    .on('restart', function() {
-      console.log('Restarted!');
-    });
+  gulp.watch(['public/app/*.js', 'public/app/**/*.js'], ['js', 'angular']);
+  // watch html
+  gulp.watch(['public/app/views/index.html', 'public/app/**/*.html', 'public/app/**/**/*.html'], ['html']);
 });
 
 gulp.task('build', ['css', 'js', 'angular']);
 
 // defining the main gulp task
-gulp.task('default', ['nodemon']);
+gulp.task('default', ['watch']);
 
