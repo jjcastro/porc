@@ -44,8 +44,8 @@ gulp.task('angular', function() {
 
 gulp.task('html', function() {
   return gulp.src('public/app/views/**/*.html')
-    .pipe(htmlhint())
-    .pipe(htmlhint.reporter())
+    // .pipe(htmlhint())
+    // .pipe(htmlhint.reporter())
     .pipe(livereload());
 });
 
