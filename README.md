@@ -26,6 +26,26 @@ Budget-App helps you budget. Create budgets for different spending categories an
 4. To start the node server `node server.js`
 5. Visit the application in your browser: [http://localhost:8080](http://localhost:8080)
 
+## API documentation
+
+### Users
+
+| Use case      | Node API                   | Angular SVC Function |
+|---------------|----------------------------|----------------------|
+| single user   | GET /api/users/:user_id    | get(id)              |
+| list users    | GET /api/users             | all()                |
+| create user   | POST /api/users            | create(userData)     |
+| update a user | PUT /api/users/:user_id    | update(id, userData) |
+| delete user   | DELETE /api/users/:user_id | delete(id)           |
+
+### Transactions
+
+| Use case                | Node API                   | Angular SVC Function |
+|-------------------------|----------------------------|----------------------|
+| list user transactions  | GET /api/transactions      | PENDING              |
+| create transaction      | POST /api/transactions     | PENDING     		  |
+
+
 ## Roadmap (features and things to come)
 
 * iOS transcation oriented app with smart predictions (time, place, etc).

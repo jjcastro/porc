@@ -1,7 +1,8 @@
-var bodyParser = require('body-parser'); 	// get body-parser
-var User       = require('../models/user');
-var jwt        = require('jsonwebtoken');
-var config     = require('../../config');
+var bodyParser  = require('body-parser'); 	// get body-parser
+var User        = require('../models/user');
+var Transaction = require('../models/transaction');
+var jwt         = require('jsonwebtoken');
+var config      = require('../../config');
 
 // super secret for creating tokens
 var superSecret = config.secret;
@@ -105,7 +106,7 @@ module.exports = function(app, express) {
 	        res.status(403).send({ 
 	        	success: false, 
 	        	message: 'Failed to authenticate token.' 
-	    	});  	   
+	    	  });  	   
 	      } else { 
 	        // if everything is good, save to request for use in other routes
 	        req.decoded = decoded;
@@ -221,6 +222,50 @@ module.exports = function(app, express) {
 	apiRouter.get('/me', function(req, res) {
 		res.send(req.decoded);
 	});
+
+  apiRouter.route('/transactions')
+    // get all the transactions (accessed at GET http://localhost:8080/api/users)
+    .get(function(req, res) {
+
+      Transaction.find({ username: req.decoded.username }, function(err, transactions) {
+        if (err) {
+          res.send(err);
+          console.log(err);
+        }
+
+        // return the users
+        res.json(transactions);
+      });
+    })
+
+    // create a user (accessed at POST http://localhost:8080/transaction)
+    .post(function(req, res) {
+      
+      var transaction = new Transaction();
+      transaction.name = req.body.name;
+      transaction.description = req.body.description; 
+      
+      // if there is a date selected, put it in
+      if(req.body.date) {
+        transaction.date = req.body.date;
+      }
+
+      console.log(req.decoded);
+      transaction.username = req.decoded.username;
+      transaction.amount = req.body.amount;
+      transaction.tags = req.body.tags;
+
+      transaction.save(function(err) {
+        if (err) {
+          console.log(err);
+          return res.send(err);
+        }
+
+        // return a message
+        res.json({ message: 'Transaction created!' });
+      });
+
+    });
 
 	return apiRouter;
 };

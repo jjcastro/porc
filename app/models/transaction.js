@@ -1,14 +1,13 @@
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
-var bcrypt 	 = require('bcrypt-nodejs');
 
 // user schema 
 var TransactionSchema = new Schema({
   name:        { type: String, required: true },
   description: String,
 
-  date:        { type: Date, default: Date.now }
-  _userId:     { type: Schema.Types.ObjectId, required: true },
+  date:        { type: Date, default: Date.now },
+  username:    { type: String, required: true },
   
   amount: { 
     isExpense: Boolean,
