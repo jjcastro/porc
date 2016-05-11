@@ -28,22 +28,25 @@ Budget-App helps you budget. Create budgets for different spending categories an
 
 ## API documentation
 
-### Users
+### Users and authentication.
 
-| Use case      | Node API                   | Angular SVC Function |
-|---------------|----------------------------|----------------------|
-| single user   | GET /api/users/:user_id    | get(id)              |
-| list users    | GET /api/users             | all()                |
-| create user   | POST /api/users            | create(userData)     |
-| update a user | PUT /api/users/:user_id    | update(id, userData) |
-| delete user   | DELETE /api/users/:user_id | delete(id)           |
+| Use case        | Node API               |
+|-----------------|------------------------|
+| create user     | POST /api/users        |
+| user info       | GET /api/users/me      |
+| update user     | PUT /api/users/me      |
+| delete user     | DELETE /api/users/me   |
+| authenticate    | POST /api/auth         |
 
 ### Transactions
 
-| Use case                | Node API                   | Angular SVC Function |
-|-------------------------|----------------------------|----------------------|
-| list user transactions  | GET /api/transactions      | PENDING              |
-| create transaction      | POST /api/transactions     | PENDING     		  |
+| Use case             | Node API                          |
+|----------------------|-----------------------------------|
+| list transactions    | GET /api/transactions             |
+| create transaction   | POST /api/transactions            |
+| single transaction   | GET /api/transactions/:tran_id    |
+| update a transaction | PUT /api/transactions/:tran_id    |
+| delete transaction   | DELETE /api/transactions/:tran_id |
 
 
 ## Roadmap (features and things to come)

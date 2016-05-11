@@ -9,11 +9,9 @@ var TransactionSchema = new Schema({
   date:        { type: Date, default: Date.now },
   username:    { type: String, required: true },
   
-  amount: { 
-    isExpense: Boolean,
-    value:     { type: Number, required: true },
-    currency:  { type: String, default: "COP" }
-  },
+  isExpense:   Boolean,
+  amount:       { type: Number, required: true },
+  currency:    { type: String, default: "COP" },
 
   tags: [{ name: String, color: String }]
 });

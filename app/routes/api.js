@@ -11,8 +11,32 @@ module.exports = function(app, express) {
 
 	var apiRouter = express.Router();
 
-	// route to authenticate a user (POST http://localhost:8080/api/authenticate)
-	apiRouter.post('/authenticate', function(req, res) {
+  // create a user (accessed at POST http://localhost:8080/users)
+  // ----------------------------------------------------
+  apiRouter.route('/users').post(function(req, res) {
+    
+    var user = new User();    // create a new instance of the User model
+    user.name = req.body.name;  // set the users name (comes from the request)
+    user.username = req.body.username;  // set the users username (comes from the request)
+    user.password = req.body.password;  // set the users password (comes from the request)
+
+    user.save(function(err) {
+      if (err) {
+        // duplicate entry
+        if (err.code == 11000) 
+          return res.json({ success: false, message: 'A user with that username already exists. '});
+        else 
+          return res.send(err);
+      }
+
+      // return a message
+      res.json({ message: 'User created!' });
+    });
+  });
+
+	// route to authenticate a user (POST http://localhost:8080/api/auth)
+  // ----------------------------------------------------
+	apiRouter.post('/auth', function(req, res) {
 
 	  // find the user
 	  User.findOne({
@@ -101,56 +125,24 @@ module.exports = function(app, express) {
 	});
 
 	// test route to make sure everything is working 
-	// accessed at GET http://localhost:8080/api
+	// ----------------------------------------------------
 	apiRouter.get('/', function(req, res) {
-		res.json({ message: 'hooray! welcome to our api!' });	
+		res.json({
+      message: 'You are authenticated and can access the API.',
+      name: req.decoded.name,
+      username: req.decoded.username
+    });	
 	});
 
-	// on routes that end in /users
+	// on routes that end in /users/me
 	// ----------------------------------------------------
-	apiRouter.route('/users')
-
-		// create a user (accessed at POST http://localhost:8080/users)
-		.post(function(req, res) {
-			
-			var user = new User();		// create a new instance of the User model
-			user.name = req.body.name;  // set the users name (comes from the request)
-			user.username = req.body.username;  // set the users username (comes from the request)
-			user.password = req.body.password;  // set the users password (comes from the request)
-
-			user.save(function(err) {
-				if (err) {
-					// duplicate entry
-					if (err.code == 11000) 
-						return res.json({ success: false, message: 'A user with that username already exists. '});
-					else 
-						return res.send(err);
-				}
-
-				// return a message
-				res.json({ message: 'User created!' });
-			});
-
-		})
-
-		// get all the users (accessed at GET http://localhost:8080/api/users)
-		.get(function(req, res) {
-
-			User.find({}, function(err, users) {
-				if (err) res.send(err);
-
-				// return the users
-				res.json(users);
-			});
-		});
-
-	// on routes that end in /users/:user_id
-	// ----------------------------------------------------
-	apiRouter.route('/users/:user_id')
+	apiRouter.route('/users/me')
 
 		// get the user with that id
 		.get(function(req, res) {
-			User.findById(req.params.user_id, function(err, user) {
+			User.find({
+        username: req.decoded.username
+      }, function(err, user) {
 				if (err) res.send(err);
 
 				// return that user
@@ -160,7 +152,9 @@ module.exports = function(app, express) {
 
 		// update the user with this id
 		.put(function(req, res) {
-			User.findById(req.params.user_id, function(err, user) {
+			User.find({
+        username: req.decoded.username
+      }, function(err, user) {
 
 				if (err) res.send(err);
 
@@ -180,24 +174,22 @@ module.exports = function(app, express) {
 			});
 		})
 
-		// delete the user with this id
+		// delete the user and all associated transactions
 		.delete(function(req, res) {
 			User.remove({
-				_id: req.params.user_id
+				username: req.decoded.username
 			}, function(err, user) {
+
 				if (err) res.send(err);
 
-				res.json({ message: 'Successfully deleted' });
+        res.json({ message: 'Successfully deleted' });
 			});
 		});
 
-	// api endpoint to get user information
-	apiRouter.get('/me', function(req, res) {
-		res.send(req.decoded);
-	});
-
+  // on routes that end in /transactions
+  // ----------------------------------------------------
   apiRouter.route('/transactions')
-    // get all the transactions (accessed at GET http://localhost:8080/api/users)
+    // get all the transactions
     .get(function(req, res) {
 
       Transaction.find({ username: req.decoded.username }, function(err, transactions) {
@@ -211,22 +203,24 @@ module.exports = function(app, express) {
       });
     })
 
-    // create a user (accessed at POST http://localhost:8080/transaction)
+    // create a transaction
     .post(function(req, res) {
       
       var transaction = new Transaction();
-      transaction.name = req.body.name;
+
+      transaction.name        = req.body.name;
       transaction.description = req.body.description; 
       
       // if there is a date selected, put it in
-      if(req.body.date) {
-        transaction.date = req.body.date;
-      }
+      if(req.body.date) transaction.date = req.body.date;
 
-      console.log(req.decoded);
+      // put the username of the logged user
       transaction.username = req.decoded.username;
-      transaction.amount = req.body.amount;
-      transaction.tags = req.body.tags;
+      
+      transaction.isExpense = req.body.isExpense;
+      transaction.amount    = req.body.amount;
+      transaction.currency  = req.body.currency;
+      transaction.tags      = req.body.tags;
 
       transaction.save(function(err) {
         if (err) {
@@ -238,6 +232,58 @@ module.exports = function(app, express) {
         res.json({ message: 'Transaction created!' });
       });
 
+    });
+
+  // on routes that end in /transactions/:transaction_id
+  // ----------------------------------------------------
+  apiRouter.route('/transactions/:transaction_id')
+
+    // get the transaction with that id
+    .get(function(req, res) {
+      Transaction.findById(req.params.transaction_id, function(err, tran) {
+        if (err) res.send(err);
+
+        // return that transaction
+        res.json(tran);
+      });
+    })
+
+    // update the transaction with this id
+    .put(function(req, res) {
+      Transaction.findById(req.params.transaction_id, function(err, tran) {
+
+        if (err) res.send(err);
+
+        // set the new information for the transaction if it exists in req
+        if(req.body.name)        tran.name        = req.body.name;
+        if(req.body.description) tran.description = req.body.description;
+        if(req.body.date)        tran.date        = req.body.date;
+        if(req.body.amount)      tran.amount      = req.body.amount;
+        if(req.body.isExpense)   tran.isExpense   = req.body.isExpense;
+        if(req.body.amount)      tran.amount      = req.body.amount;
+        if(req.body.currency)    tran.currency    = req.body.currency;
+        if(req.body.tags)        tran.tags        = req.body.tags;
+
+        // save the transaction
+        tran.save(function(err) {
+          if (err) res.send(err);
+
+          // return a message
+          res.json({ message: 'transaction updated!' });
+        });
+
+      });
+    })
+
+    // delete the transaction with this id
+    .delete(function(req, res) {
+      Transaction.remove({
+        _id: req.params.transaction_id
+      }, function(err, transaction) {
+        if (err) res.send(err);
+
+        res.json({ message: 'Successfully deleted' });
+      });
     });
 
 	return apiRouter;

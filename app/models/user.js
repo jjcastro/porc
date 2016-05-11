@@ -1,6 +1,7 @@
-var mongoose = require('mongoose');
-var Schema   = mongoose.Schema;
-var bcrypt   = require('bcrypt-nodejs');
+var mongoose    = require('mongoose');
+var Schema      = mongoose.Schema;
+var bcrypt      = require('bcrypt-nodejs');
+var Transaction = require('./transaction');
 
 // user schema 
 var UserSchema = new Schema({
@@ -25,6 +26,19 @@ UserSchema.pre('save', function(next) {
 		next();
 	});
 });
+
+// method to delete all the transactions associated with this user
+UserSchema.pre('delete', function(next) {
+  var user = this;
+
+  Transaction.remove({
+    username: this.username
+  }, function(err, user) {
+    if (err) return next(err);
+
+    next();
+  });
+})
 
 // method to compare a given password with the database hash
 UserSchema.methods.comparePassword = function(password) {
