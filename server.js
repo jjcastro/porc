@@ -10,7 +10,7 @@ var mongoose   = require('mongoose');
 var config 	   = require('./config');
 var path 	     = require('path'); 
 
-// APP CONFIGURATION ============================
+// APP CONFIGURATION
 // ==============================================
 // use body parser so we can grab information from POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,7 +34,7 @@ mongoose.connect(config.database);
 // used for requests that our frontend will make
 app.use(express.static(__dirname + '/public'));
 
-// ROUTES FOR OUR API ===========================
+// ROUTES FOR OUR API
 // ==============================================
 
 // API ROUTES -------------------------
