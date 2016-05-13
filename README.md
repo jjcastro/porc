@@ -28,25 +28,29 @@ Porc helps you budget. Create budgets for different spending categories and log 
 
 ## API documentation
 
-### Users and authentication.
+### Users
 
-| Use case        | Node API               |
-|-----------------|------------------------|
-| create user     | POST /api/users        |
-| user info       | GET /api/users/me      |
-| update user     | PUT /api/users/me      |
-| delete user     | DELETE /api/users/me   |
-| authenticate    | POST /api/auth         |
+| Use case        | Node API               | Angular Svc Func |
+|-----------------|------------------------|------------------|
+| create user     | POST /api/users        | create( { name, username, password } ) |
+| user info       | GET /api/users/me      | get() |
+| update user     | PUT /api/users/me      | update( { [name], [username], [password] } ) |
+| delete user     | DELETE /api/users/me   | delete() |
+
+### Authentication
+| Use case        | Node API               | Angular Svc Func |
+|-----------------|------------------------|------------------|
+| authenticate    | POST /api/auth         | login( { username, password } ) |
 
 ### Transactions
 
-| Use case             | Node API                          |
-|----------------------|-----------------------------------|
-| list transactions    | GET /api/transactions             |
-| create transaction   | POST /api/transactions            |
-| single transaction   | GET /api/transactions/:tran_id    |
-| update a transaction | PUT /api/transactions/:tran_id    |
-| delete transaction   | DELETE /api/transactions/:tran_id |
+| Use case             | Node API                          | Angular Svc Func |
+|----------------------|-----------------------------------|------------------|
+| list transactions    | GET /api/transactions             | all() |
+| create transaction   | POST /api/transactions            | create() |
+| single transaction   | GET /api/transactions/:tran_id    | get(id) |
+| update a transaction | PUT /api/transactions/:tran_id    | update(id) |
+| delete transaction   | DELETE /api/transactions/:tran_id | delete(id) |
 
 
 ## Roadmap (features and things to come)
