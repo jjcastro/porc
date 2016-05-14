@@ -1,0 +1,46 @@
+<div class="page-header">
+	<h1>
+		Overview
+		<a href="/transactions/create" class="btn btn-default">
+			<span class="glyphicon glyphicon-plus"></span> 
+			New User
+		</a>
+	</h1>
+
+</div>
+
+<div class="jumbotron text-center" ng-show="overview.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading overview...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="overview.transactions">
+	<thead>
+		<tr>
+			<th>Amount</th>
+			<th>isExpense</th>
+			<th>Description</th>
+			<th>Name</th>
+			<th>Tags</th>
+			<th>Date</th>
+			<th class="col-sm-2"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="tran in overview.transactions">
+			
+			<td>{{tran.amount}}</td>
+			<td>{{tran.isExpense}}</td>
+			<td>{{tran.description}}</td>
+			<td>{{tran.name}}</td>
+			<td>
+				<span ng-repeat="tag in tran.tags">{{tag.name}} </span></td>
+			<td>{{tran.date}}</td>
+
+			<td class="col-sm-2">
+				<a ng-href="/transactions/{{ tran._id }}" class="btn btn-primary">Edit</a>
+				<a href="#" ng-click="user.deleteTransaction(tran._id)" class="btn btn-danger">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

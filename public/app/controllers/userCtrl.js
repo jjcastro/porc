@@ -8,7 +8,7 @@ angular.module('userCtrl', ['userService'])
 	vm.processing = true;
 
 	// grab all the users at page load
-	User.all()
+	User.get()
 		.success(function(data) {
 
 			// when all the users come back, remove the processing variable
@@ -28,7 +28,7 @@ angular.module('userCtrl', ['userService'])
 				// get all users to update the table
 				// you can also set up your api 
 				// to return the list of users with the delete call
-				User.all()
+				User.get()
 					.success(function(data) {
 						vm.processing = false;
 						vm.users = data;

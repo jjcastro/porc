@@ -31,7 +31,7 @@ angular.module('mainCtrl', [])
 
 				// if a user successfully logs in, redirect to users page
 				if (data.success)			
-					$location.path('/users');
+					$location.path('/overview');
 				else 
 					vm.error = data.message;
 				

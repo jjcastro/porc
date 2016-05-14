@@ -1,13 +1,13 @@
 <div class="jumbotron text-center">
-	<h1>Welcome to the User CRM!</h1>
+	<h1>Welcome to Porc!</h1>
 
 	<div ng-if="!main.loggedIn">
-		<p>Login to see manage your users.</p>
+		<p>Login to use Porc.</p>
 		<a href="/login" class="btn btn-primary">Login</a>
 	</div>
 
 	<div ng-if="main.loggedIn">
-		<p>Manage your users.</p>
-		<a href="/users" class="btn btn-primary">View Users</a>
+		<p>See the overview.</p>
+		<a href="/overview" class="btn btn-primary">Overview</a>
 	</div>
 </div>

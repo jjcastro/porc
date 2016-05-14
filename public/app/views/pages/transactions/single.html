@@ -1,0 +1,60 @@
+<div class="page-header">
+	<h1 ng-if="transaction.type == 'create'">Create transaction</h1>
+	<h1 ng-if="transaction.type == 'edit'">Edit transaction</h1>
+</div>
+
+<form class="form-horizontal" ng-submit="transaction.saveTransaction()">
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Amount</label>
+		<div class="col-sm-6">
+			<input type="number" class="form-control" ng-model="transaction.transactionData.amount">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="transaction.transactionData.name">
+		</div>
+	</div>
+
+	<div class="checkbox">
+	<label class="col-sm-2 control-label"></label>
+	<div class="col-sm-6">
+      <input type="checkbox" ng-model="transaction.transactionData.isExpense">Expense
+      </div>
+  </div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Description</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="transaction.transactionData.description">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Date</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="transaction.transactionData.date">
+		</div>
+	</div>
+	
+	<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-6">
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="transaction.type == 'create'">Create transaction</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="transaction.type == 'edit'">Update transaction</button>
+	</div>
+	</div>
+
+</form>
+
+<div class="row show-hide-message" ng-show="transaction.message">
+	<div class="col-sm-6 col-sm-offset-2">
+		
+		<div class="alert alert-info">
+			{{ transaction.message }}
+		</div>
+
+	</div>
+</div>
