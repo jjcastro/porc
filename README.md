@@ -28,19 +28,19 @@ Porc helps you budget. Create budgets for different spending categories and log 
 
 ## API documentation
 
-### Users
-
+### Users and authentication
 | Use case        | Node API               | Angular Svc Func |
 |-----------------|------------------------|------------------|
 | create user     | POST /api/users        | create( { name, username, password } ) |
-| user info       | GET /api/users/me      | get() |
-| update user     | PUT /api/users/me      | update( { [name], [username], [password] } ) |
-| delete user     | DELETE /api/users/me   | delete() |
+| authenticate    | POST /api/users/auth   | login( { username, password } ) |
 
-### Authentication
+### Me (user info)
+
 | Use case        | Node API               | Angular Svc Func |
 |-----------------|------------------------|------------------|
-| authenticate    | POST /api/auth         | login( { username, password } ) |
+| user info       | GET /api/me            | get() |
+| update user     | PUT /api/me            | update( { [name], [username], [password] } ) |
+| delete user     | DELETE /api/me         | delete() |
 
 ### Transactions
 
