@@ -25,8 +25,8 @@
 	<!-- load angular and angular-route via CDN -->
 	<script src="assets/libs/jquery/dist/jquery.js"></script>
 	<script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="assets/libs/angular/angular.min.js"></script>
-	<script src="assets/libs/angular-route/angular-route.js"></script>
+	<script src="assets/libs/angular/angular.js"></script>
+	<script src="assets/libs/angular-ui-router/release/angular-ui-router.js"></script>
 	<script src="assets/libs/angular-animate/angular-animate.min.js"></script>
 
 	<!-- main Angular app files, services and controllers -->
@@ -34,88 +34,9 @@
 </head>
 <body ng-app="porcApp" ng-controller="mainController as main">
 
-<!-- NAVBAR -->
-<header>
-	<div class="navbar">
-	<div class="container">
-		<div class="navbar-header">
-			<a href="/">
-			<img src="assets/img/porc-logo-header.png">
-			</a>
-		</div>
-		<ul class="nav navbar-nav navbar-right">
-			<li ><a href="/#">About</a></li>
-			<li ><a href="/#">Features</a></li>
-			<li ><a href="/#">Join</a></li>
-			<li class="login" ng-if="!main.loggedIn"><a href="/login">
-				<span class="login-btn">Login</span>
-			</a></li>
-			<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">
-				<span class="login-btn">Logout</span>
-			</a></li>
-		</ul>
-	</div>
-	</div>
-</header>
-
-<div id="first">
-	<div class="bkg-highlight"></div>
-	
-	<div class="container">
-
-		<img class="porc-coin" src="assets/img/porc-with-coin.png">
-
-		<h1>A brand new way to save.</h1>
-
-		<p>
-		Porc makes saving and managing your
-		money <i>quicker, easier and a lot more fun</i>.
-		</p>
-
-		<ul class="main-links">
-			<li><a href="#">Go to the app</a></li>
-			<li><a href="#">Join the iPhone beta</a></li>
-		</ul>
-	</div>
-</div>
-
-<div id="second">
-	
-	<div class="container">
-		<img class="iphone-mock" src="assets/img/iphone-mock.png">
-		<h1>Too much <span id="month">month</span> left at the end of the <span id="money">money</span>?</h1>
-
-		<p>
-			Porc is an expense tracking app that puts <i>you</i> in control of your finances, using smart reports and contextual predictions to help you understand the way you spend and manage your money.
-		</p>
-		<p>
-			The best part is, <i>you don’t have to do much at all!</i> Porc does all the hard work for you. Just set some budgets for your goals, input what you spend, and sit back. Porc takes care of the rest.
-		</p>
-	</div>
-
-</div>
-
-<div id="third">
-<div class="container">
-	<h2>Join Porc today, <b>for free</b>.</h2>
-</div>
-</div>
-
-<div id="footer">
-<div class="container">
-	<span>Designed and developed by <a href="http://jjcastro.com">me</a> in Bogotá.</span>
-	<div class="git-buttons"><iframe class="star-btn" src="https://ghbtns.com/github-btn.html?user=jjcastro&repo=porc&type=star&count=false&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
-	<iframe class="follow-btn" src="https://ghbtns.com/github-btn.html?user=jjcastro&type=follow&count=false&size=large" frameborder="0" scrolling="0" width="220px" height="30px"></iframe></div>
-	<span class="copyright">iPhone is a trademark of Apple Inc.</span>
-</div>
-	
-</div>
-
-
-
 <div class="main-container">
 	<!-- ANGULAR VIEWS -->
-	<!-- <div ng-view></div> -->
+	<div ui-view></div>
 </div>
 
 </body>

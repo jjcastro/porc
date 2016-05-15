@@ -1,7 +1,7 @@
 {
   "name": "budget-app",
-  "version" : "0.1",
-  "description" : "Expense tracking app with budgets",
+  "version": "0.1",
+  "description": "Expense tracking app with budgets",
   "main": "server.js",
   "authors": [
     "J.J. Castro <jj.castro10@uniandes.edu.co>"
@@ -18,8 +18,8 @@
   "dependencies": {
     "bootstrap": "^3.3.6",
     "angular": "^1.5.5",
-    "angular-route": "^1.5.5",
     "angular-animate": "^1.5.5",
-    "animate.css": "animate-css#^3.5.1"
+    "animate.css": "animate-css#^3.5.1",
+    "angular-ui-router": "^0.2.18"
   }
 }
