@@ -66,7 +66,7 @@ h1 {
   line-height: 38px;
 }
 
-/* HEADER 
+/* HEADER PRESENTATION
 ===================== */
 header .navbar-header img {
   max-height: 48px;
@@ -221,6 +221,9 @@ div#third h2 b {
   box-shadow: inset 0 -18px 0 @bermuda;
 }
 
+/* FOOTER
+====================== */
+
 div#footer {
   background-color: @dark-gray;
   color: @light-gray;
@@ -250,15 +253,154 @@ div#footer .follow-btn {
   margin-right: 10px;
 }
 
+/* LOGIN SCREEN
+====================== */
+#login-form {
+  background-color: @bermuda;
+  max-width: 420px;
+  margin: 60px auto 0;
+  padding: 0 20px 20px;
+}
+
+#login-form h1 {
+  font-size: 68px;
+}
+
+#login-form span.cue {
+  margin-top: 15px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.bkg-login {
+  background-color: @light-gray;
+  height: 29px;
+  width: 100%;
+  max-width: 420px;
+  position: absolute;
+  margin-left: -20px;
+}
+
+.form-group input {
+  font-size: 20px;
+  line-height: 20px;
+  height: 42px;
+}
+
+.form-control {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -webkit-box-shadow:inset 0px 0px 0px 2px @cinnabar;
+  -moz-box-shadow:inset 0px 0px 0px 2px @cinnabar;
+  box-shadow:inset 0px 0px 0px 2px @cinnabar;;
+}
+
+.checkbox {
+  margin-bottom: 15px;
+}
+
+.checkbox label {
+  line-height: 16px;
+}
+
+.checkbox span {
+  font-size: 18px;
+  line-height: 20px;
+  padding-left: 5px;
+}
+
+/* Disable webkit yello background */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+input[type='checkbox'] {
+  display:none;
+}
+input[type='checkbox'] + label {
+  display:inline-block;
+  width:20px;
+  height:20px;
+  background-color: @white;
+  border-radius: 4px;
+}
+input[type='checkbox']:checked + label {
+  background-image: url('../img/chk.png');
+  background-size: 20px 20px;
+}
+
+#login-form .fluid-container {
+  position: relative;
+}
+
+.button-red {
+  background-color: @cinnabar;
+  border: none;
+  border-radius: 4px;
+  font-family: @brandon, sans-serif;
+  font-weight: 500;
+  color: @white;
+}
+
+#login-btn {
+  padding: 6px 10px;
+  width: 160px;
+  float: right;
+  font-size: 25px;
+}
+
+.alert {
+  padding-bottom: 10px;
+  border-radius: 0;
+}
+
+.login-info {
+  max-width: 420px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.login-info span {
+  font-family: @brandon, sans-serif;
+  font-size: 20px;
+  float: right;
+}
+
+.em-sob {
+  padding: 14px;
+  background-size: 28px;
+  margin-left: 5px;
+  margin-top: 2px;
+  margin-right: 10px;
+}
+
+@media (min-width: 430px) {
+  .em-sob {
+    margin-right: 0px;
+  }
+}
+
+.alert {
+  margin-bottom: 0;
+  margin-top: 10px;
+  font-family: @brandon, sans-serif;
+}
+
 /* NGANIMATE
 ====================== */
 
-/* show and hide */
-.show-hide-message.ng-hide-remove {
-  -webkit-animation:zoomIn 0.3s both ease;
-  -moz-animation:zoomIn 0.3s both ease;
-  animation:zoomIn 0.3s both ease;
-}
+// /* show and hide */
+// .show-hide-message.ng-hide-remove {
+//   -webkit-animation:zoomIn 0.3s both ease;
+//   -moz-animation:zoomIn 0.3s both ease;
+//   animation:zoomIn 0.3s both ease;
+// }
 
 /* ANIMATIONS
 ====================== */
@@ -281,6 +423,12 @@ div#footer .follow-btn {
 @-moz-keyframes spin {
   from  { -moz-transform:rotate(0deg); }  
   to  { -moz-transform:rotate(360deg); }
+}
+
+.bouncer.ng-enter {
+  -webkit-animation: rubberBand 0.6s both ease;
+  -moz-animation: rubberBand 0.6s both ease;
+  animation: rubberBand 0.6s both ease;
 }
 
 /* DISABLE NAVBAR COLLAPSE
@@ -376,6 +524,10 @@ div#footer .follow-btn {
 
   .bkg-highlight {
     height: 53px;
+  }
+
+  .bkg-login {
+    height: 35px;
   }
 }
 
