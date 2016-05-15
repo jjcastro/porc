@@ -1,17 +1,241 @@
 /* VARIABLES
 ====================== */
-@blue: #A6D0C7;
-@purple: #993399;
-@red: #cc3333;
+@dark-gray: #3b3b3b;
+@gray: #b3b3b3;
+@light-gray: #f2f2f2;
+@black: #000000;
+@white: #ffffff;
 
-main          {
-  padding-top:30px; 
+@bermuda: #7DE7C8;
+@cinnabar: #EC3F3C;
+
+@brandon: 'brandon-grotesque';
+@tisa: 'ff-tisa-web-pro';
+
+/* BOOTSTRAP VARS
+====================== */
+
+@screen-xs: 480px;
+@screen-sm: 768px;
+@screen-md: 992px;
+@screen-lg: 1200px;
+
+/* GLOBAL
+====================== */
+body {
+  background-color: @light-gray;
+  font-family: @tisa;
+  // font-size: 22px;
+  // line-height: 36px;
+  font-size: 20px;
+  line-height: 32px;
+  color: @black;
+}
+
+a {
+  color: @black;
+  font-family: @brandon;
+}
+
+a:hover {
+  color: @cinnabar;
+  text-decoration: none;
+  box-shadow: inset 0 -3px 0 @cinnabar;
+}
+
+h1, h2, h3 {
+  font-family: @brandon;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 39px;
+  padding-bottom: 10px;
+  line-height: 38px;
 }
 
 /* HEADER 
 ===================== */
-header .navbar    { 
-  border-radius:0;
+header .navbar-header img {
+  max-height: 48px;
+  margin-top: 8px;
+  width: auto;
+}
+
+.navbar {
+  border-bottom: 1px solid @gray;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+  line-height: 70px;
+  height: 70px;
+  padding-top: 0; 
+  font-family: @brandon;
+  color: @black;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 5px;
+}
+
+.navbar-nav li a:hover {
+  color: @cinnabar;
+  background-color: inherit;
+}
+
+.login-btn {
+  background-color: @cinnabar;
+  color: @white;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.login a:hover {
+  box-shadow: none;
+}
+
+.login-btn:hover {
+  background-color: darken(color(@cinnabar), 20%);
+}
+
+/* MAIN PAGE
+====================== */
+
+.bkg-highlight {
+  background-color: @light-gray;
+  // height: 53px;
+  height: 44px;
+  width: 100%;
+  position: absolute;
+  // margin-left: 15px;
+}
+
+div#first div.container {
+  position: relative;
+}
+
+img.porc-coin {
+  display: none;
+}
+
+ul.main-links {
+  padding: 0;
+  margin: 0;
+  padding-top: 20px;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+ul.main-links li {
+  display: inline-block;
+  margin-right: 50px;
+}
+
+div#first {
+  background-color: @bermuda;
+  padding-bottom: 30px;
+}
+
+div#first p {
+  max-width: 380px;
+}
+
+div#second div.container {
+  position: relative;
+}
+
+div#second {
+  padding-top: 20px;
+  background-color: @cinnabar;
+  // text-align: right;
+  padding-bottom: 20px;
+}
+
+div#second span#month,
+div#second span#money, {
+  color: @white;
+}
+
+div#second span#month { letter-spacing: 4px; }
+div#second span#money { letter-spacing: -2px; }
+
+div#second h1 {
+  padding-bottom: 15px;
+}
+
+div#second p {
+  margin-left: auto;
+  margin-bottom: 20px;
+}
+
+img.iphone-mock {
+  display: none;
+}
+
+div#third h2 {
+  font-size: 35px;
+  text-align: left;
+}
+
+div#third h2 b {
+  color: @cinnabar;
+}
+
+div#third h2 span {
+  margin-top: 20px;
+  font-style: italic;
+  font-weight: 600;
+  border: 5px solid @bermuda;
+  display: inline-block;
+  padding: 5px 10px;
+}
+
+div#third h2 {
+  // max-width: 650px;
+  // margin-left: auto;
+  font-size: 40px;
+  padding: 30px 0px 40px;
+  text-align: center;
+  font-weight: 500;
+  font-style: italic;
+}
+
+div#third h2 b {
+  display: inline-block;
+  padding: 0 3px;
+  font-weight: 500;
+  color: @black;
+  margin-bottom: -1px;
+  box-shadow: inset 0 -18px 0 @bermuda;
+}
+
+div#footer {
+  background-color: @dark-gray;
+  color: @light-gray;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-family: @brandon;
+  font-weight: 400;
+}
+
+div#footer a {
+  color: @cinnabar;
+}
+
+span.copyright {
+  font-size: 16px;
+  display: block;
+}
+
+div#footer iframe {
+  margin-top: 10px;
+  /*float: right;*/
+}
+
+div#footer .star-btn { width: 76px; }
+div#footer .follow-btn { 
+  width: 170px;
+  margin-right: 10px;
 }
 
 /* NGANIMATE
@@ -46,3 +270,168 @@ header .navbar    {
   from  { -moz-transform:rotate(0deg); }  
   to  { -moz-transform:rotate(360deg); }
 }
+
+/* DISABLE NAVBAR COLLAPSE
+====================== */
+
+.navbar-collapse.collapse {
+  display: block!important;
+}
+
+.navbar-nav>li {
+  float: left !important;
+}
+
+.navbar-nav>li>a {
+  padding-bottom: 10px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.navbar-nav {
+  float: none !important;
+  width: 300px;
+  margin: 0 auto !important;
+}
+
+.navbar-header {
+  clear: both;
+}
+
+.navbar-header {
+  text-align: center;
+}
+
+.navbar .container {
+  text-align: center;
+}
+
+/* NAVBAR COLLAPSE UNDER 375px */
+@media (min-width: 375px) {
+  .navbar-nav {
+    width: 350px;
+  }
+
+  .navbar-nav>li>a {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+}
+
+/* NAVBAR COLLAPSE UNDER 520px */
+@media (min-width: 520px) {
+  .navbar-right {
+    float: right !important;
+  }
+
+  .navbar-header {
+    float: left;
+  }
+
+  .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .navbar-nav {
+    margin: 0;
+    width: auto;
+  }
+
+  .navbar-nav li a {
+    font-size: 22px;
+  }
+
+  .navbar-nav>li>a {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+/* GENERAL SCREEN QUERIES
+====================== */
+
+@media (min-width: @screen-xs) {
+  body {
+    font-size: 22px;
+    line-height: 36px;
+  }
+
+  h1 {
+    font-size: 54px;
+    line-height: 50px;
+  }
+
+  .bkg-highlight {
+    height: 53px;
+  }
+}
+
+@media (min-width: 720px) {
+  img.porc-coin {
+    position: absolute;
+    width: 180px;
+    height: auto;
+    right: 20px;
+    margin-top: 8px;
+    display: inherit;
+  }
+
+  img.iphone-mock {
+    display: inherit;
+    width: 210px;
+    height: auto;
+    position: absolute;
+    margin-top: 30px;
+    left: 10px;
+  }
+
+  div#second h1 {
+    max-width: 480px;
+    margin-left: auto;
+  }
+
+  div#second {
+    padding-top: 10px;
+  }
+
+  div#second p {
+    max-width: 480px;
+  }
+
+    div#footer iframe {
+    float: right;
+  }
+}
+
+@media (min-width: @screen-md) {
+  div#second h1 {
+    max-width: 650px;
+    margin-left: auto;
+  }
+
+  div#second {
+    padding-top: 20px;
+    padding-bottom: 40px;
+ }
+
+  div#second p {
+    max-width: 650px;
+  }
+
+  img.iphone-mock {
+    width: 250px;
+  }
+
+  div#third h2 {
+    max-width: 650px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width: @screen-lg) {
+  .container {
+    width: 970px;
+  }
+}
+
