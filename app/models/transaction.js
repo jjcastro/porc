@@ -16,4 +16,4 @@ var TransactionSchema = new Schema({
   tags: [{ name: String, color: String }]
 });
 
-module.exports = mongoose.model('Transaction', TransactionSchema);
+module.exports = TransactionSchema;

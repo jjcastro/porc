@@ -1,6 +1,6 @@
 var bodyParser  = require('body-parser'); 	// get body-parser
 var User        = require('../models/user');
-var Transaction = require('../models/transaction');
+// var Transaction = require('../models/transaction');
 var jwt         = require('jsonwebtoken');
 var config      = require('../../config');
 
@@ -192,21 +192,21 @@ module.exports = function(app, express) {
     // get all the transactions
     .get(function(req, res) {
 
-      Transaction.find({ username: req.decoded.username }, function(err, transactions) {
+      User.findOne({ username: req.decoded.username }, 'transactions', function(err, user) {
         if (err) {
           res.send(err);
           console.log(err);
         }
 
         // return the users
-        res.json(transactions);
+        res.json(user.transactions);
       });
     })
 
     // create a transaction
     .post(function(req, res) {
       
-      var transaction = new Transaction();
+      var transaction = {};
 
       transaction.name        = req.body.name;
       transaction.description = req.body.description; 
@@ -222,15 +222,26 @@ module.exports = function(app, express) {
       transaction.currency  = req.body.currency;
       transaction.tags      = req.body.tags;
 
-      transaction.save(function(err) {
+      User.findOne({ username: req.decoded.username }, 'transactions', function(err, user) {
         if (err) {
+          res.send(err);
           console.log(err);
-          return res.send(err);
         }
 
-        // return a message
-        res.json({ message: 'Transaction created!' });
+        user.transactions.push(transaction);
+
+        user.save(function(err) {
+          if (err) {
+            console.log(err);
+            return res.send(err);
+          }
+
+          // return a message
+          res.json({ message: 'Transaction created!' });
+        });
       });
+
+      
 
     });
 
@@ -240,18 +251,22 @@ module.exports = function(app, express) {
 
     // get the transaction with that id
     .get(function(req, res) {
-      Transaction.findById(req.params.transaction_id, function(err, tran) {
+      User.findOne({ username: req.decoded.username }, 'transactions', function(err, user) {
         if (err) res.send(err);
 
+        var tran = user.transactions.id(req.params.transaction_id);
+
         // return that transaction
-        res.json(tran);
+        if(tran) res.json(tran);
+        else res.json({ message: 'No transaction with parameter id.' });
       });
     })
 
     // update the transaction with this id
     .put(function(req, res) {
-      Transaction.findById(req.params.transaction_id, function(err, tran) {
+      User.findOne({ username: req.decoded.username }, 'transactions', function(err, user) {
 
+        var tran = user.transactions.id(req.params.transaction_id);
         if (err) res.send(err);
 
         // set the new information for the transaction if it exists in req
@@ -265,7 +280,7 @@ module.exports = function(app, express) {
         if(req.body.tags)        tran.tags        = req.body.tags;
 
         // save the transaction
-        tran.save(function(err) {
+        user.save(function(err) {
           if (err) res.send(err);
 
           // return a message
@@ -277,12 +292,23 @@ module.exports = function(app, express) {
 
     // delete the transaction with this id
     .delete(function(req, res) {
-      Transaction.remove({
-        _id: req.params.transaction_id
-      }, function(err, transaction) {
+      User.findOne({ username: req.decoded.username }, 'transactions', function(err, user) {
         if (err) res.send(err);
 
-        res.json({ message: 'Successfully deleted' });
+        var tran = user.transactions.id(req.params.transaction_id);
+
+        if (tran) {
+          
+          // borrar y guardar usuario
+          tran.remove();
+
+          user.save(function(err) {
+            if (err) res.send(err);
+
+            res.json({ message: 'Successfully deleted' });
+          });
+        }
+        else res.json({ message: 'No transaction with parameter id.' });
       });
     });
 
