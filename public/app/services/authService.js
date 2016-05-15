@@ -15,7 +15,7 @@ angular.module('authService', [])
 	authFactory.login = function(username, password) {
 
 		// return the promise object and its data
-		return $http.post('/api/auth', {
+		return $http.post('/api/users/auth', {
 			username: username,
 			password: password
 		})
@@ -46,10 +46,6 @@ angular.module('authService', [])
 			return $http.get('/api/me', { cache: true });
 		else
 			return $q.reject({ message: 'User has no token.' });		
-	};
-
-	authFactory.createSampleUser = function() {
-		$http.post('/api/sample');
 	};
 
 	// return auth factory object
