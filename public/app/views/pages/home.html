@@ -9,9 +9,9 @@
 			</a>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
-			<li ><a href="/#">About</a></li>
-			<li ><a href="/#">Features</a></li>
-			<li ><a href="/#">Join</a></li>
+			<li ><a href="#about">About</a></li>
+			<li ><a href="#features">Features</a></li>
+			<li ><a href="/#" ng-click="main.openDialogB()">Join</a></li>
 			<li class="login" ng-if="!main.loggedIn"><a href="/login">
 				<span class="login-btn">Login</span>
 			</a></li>
@@ -30,6 +30,7 @@
 
 		<img class="porc-coin" src="assets/img/porc-with-coin.png">
 
+		<a name="about"></a>
 		<h1>A brand new way to save.</h1>
 
 		<p>
@@ -38,8 +39,8 @@
 		</p>
 
 		<ul class="main-links">
-			<li><a href="#">Go to the app</a></li>
-			<li><a href="#">Join the iPhone beta</a></li>
+			<li><a href="/login">Go to the app</a></li>
+			<li><a href="#" ng-click="main.openDialogA()">Join the iPhone alpha</a></li>
 		</ul>
 	</div>
 </div>
@@ -48,6 +49,7 @@
 	
 	<div class="container">
 		<img class="iphone-mock" src="assets/img/iphone-mock.png">
+		<a name="features"></a>
 		<h1>Too much <span id="month">month</span> left at the end of the <span id="money">money</span>?</h1>
 
 		<p>
@@ -73,7 +75,34 @@
 	<iframe class="follow-btn" src="https://ghbtns.com/github-btn.html?user=jjcastro&type=follow&count=false&size=large" frameborder="0" scrolling="0" width="220px" height="30px"></iframe></div>
 	<span class="copyright">iPhone is a trademark of Apple Inc.</span>
 </div>
-	
+</div>
+
+<div id="bkg-gray" ng-if="main.dialogOpenA || main.dialogOpenB">
+	<div class="popup" ng-if="main.dialogOpenA">
+		<a href="#" ng-click="main.closeDialogA()"><span class="glyphicon glyphicon-remove"></span></a>
+		<h2>Beta coming soon!</span></h2>
+		<p>The iPhone app alpha release is currently closed and in testing.
+			 In the meanwhile, you can use the app on a mobile browser such as Chrome or Safari.
+		</p>
+	</div>
+
+	<div class="popup clearfix" ng-if="main.dialogOpenB">
+		<a href="#" ng-click="main.closeDialogB()"><span class="glyphicon glyphicon-remove"></span></a>
+		<h2>Join Porc!</span></h2>
+		<p>Porc is currently ongoing beta testing before launch.
+			 Enter your email below to create your account and start using Porc.</p>
+
+		<form class="form-inline clearfix">
+			<div class="form-group">
+				<input type="email" class="form-control" placeholder="Email">
+			</div>
+
+			<button type="submit" class="button-red email-btn">
+				<span>Join Porc</span>
+			</button>
+		</form>
+		
+	</div>
 </div>
 
 

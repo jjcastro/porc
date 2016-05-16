@@ -50,4 +50,9 @@ angular.module('mainCtrl', [])
 		Auth.createSampleUser();
 	};
 
+  vm.openDialogA = function() { vm.dialogOpenA = true; };
+  vm.closeDialogA = function() { vm.dialogOpenA = false; };
+  vm.openDialogB = function() { vm.dialogOpenB = true; };
+  vm.closeDialogB = function() { vm.dialogOpenB = false; };
+
 });
