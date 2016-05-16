@@ -66,7 +66,7 @@ angular.module('overviewCtrl', ['transactionService'])
 })
 
 // controller applied to user edit page
-.controller('transactionEditController', function($routeParams, Transaction) {
+.controller('transactionEditController', function($stateParams, Transaction) {
 
   var vm = this;
 
@@ -75,8 +75,8 @@ angular.module('overviewCtrl', ['transactionService'])
   vm.type = 'edit';
 
   // get the user data for the user you want to edit
-  // $routeParams is the way we grab data from the URL
-  Transaction.get($routeParams.tran_id)
+  // $stateParams is the way we grab data from the URL
+  Transaction.get($stateParams.tran_id)
     .success(function(data) {
       vm.transactionData = data;
     });
@@ -87,7 +87,7 @@ angular.module('overviewCtrl', ['transactionService'])
     vm.message = '';
 
     // call the userService function to update 
-    Transaction.update($routeParams.tran_id, vm.transactionData)
+    Transaction.update($stateParams.tran_id, vm.transactionData)
       .success(function(data) {
         vm.processing = false;
 
