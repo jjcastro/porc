@@ -1,6 +1,6 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function($rootScope, $location, Auth) {
+.controller('mainController', function($rootScope, $state, Auth) {
 
 	var vm = this;
 
@@ -31,7 +31,7 @@ angular.module('mainCtrl', [])
 
 				// if a user successfully logs in, redirect to users page
 				if (data.success)			
-					$location.path('/overview');
+					$state.go('app.overview');
 				else 
 					vm.error = data.message;
 				
@@ -43,7 +43,7 @@ angular.module('mainCtrl', [])
 		Auth.logout();
 		vm.user = '';
 		
-		$location.path('/login');
+		$state.go('login');
 	};
 
 	vm.createSample = function() {

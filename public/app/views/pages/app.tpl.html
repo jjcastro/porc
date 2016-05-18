@@ -1,0 +1,38 @@
+
+<!-- NAVBAR -->
+<header>
+	<div class="navbar">
+		<div class="container">
+			<div class="navbar-inner-app">
+				<div class="navbar-header">
+					<a href="/">
+					<img src="assets/img/porc-logo-header.png">
+					</a>
+				</div> 
+
+
+
+				<ul class="nav navbar-nav nav-center">
+					<li ><a href="#" class="centered">Overview</a></li>
+					<li ><a href="#">Entries</a></li>
+					<li ><a href="#">Budgets</a></li>
+					<li ><a href="#" class="centered">Reports</a></li>
+					</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right" style="">
+					
+					<li ><a href="/#" ng-click="main.openDialogB()"><span class="glyphicon glyphicon-cog"></span></a></li>
+					<li class="login" ng-if="!main.loggedIn"><a ui-sref="login">
+						<span class="login-btn">Login</span>
+					</a></li>
+					<li class="login" ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">
+						<span class="login-btn">Logout</span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div ui-view></div>
