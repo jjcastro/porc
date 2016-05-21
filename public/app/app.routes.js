@@ -31,6 +31,8 @@ angular.module('app.routes', ['ui.router'])
     .state('app', {
       url: "/a",
       abstract: true,
+      controller: "appController",
+      controllerAs: "app",
       templateUrl: "app/views/pages/app.tpl.html"
     })
 		

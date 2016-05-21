@@ -1,4 +1,4 @@
-angular.module('porcApp', ['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'overviewCtrl', 'transactionService'])
+angular.module('porcApp', ['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'overviewCtrl', 'appCtrl', 'transactionService'])
 
 // application configuration to integrate token into requests
 .config(function($httpProvider) {
