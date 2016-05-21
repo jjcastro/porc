@@ -15,7 +15,7 @@ router.route('/')
         console.log(err);
       }
 
-      if (user.transactions) {
+      if (user) {
         res.json(user.transactions);
       } else {
         res.json({error: 'Could not retrieve transactions.'});
