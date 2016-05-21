@@ -9,6 +9,8 @@
 @bermuda: #7DE7C8;
 @cinnabar: #EC3F3C;
 
+@disabled-menu-color: #cccccc;
+
 @brandon: 'brandon-grotesque';
 @tisa: 'ff-tisa-web-pro';
 
@@ -109,6 +111,84 @@ header .navbar-header img {
 .login-btn:hover {
   background-color: darken(color(@cinnabar), 20%);
 }
+
+/* DISABLE NAVBAR COLLAPSE
+====================== */
+
+.navbar-collapse.collapse {
+  display: block!important;
+}
+
+.navbar-nav>li {
+  float: left !important;
+}
+
+.navbar-nav>li>a {
+  padding-bottom: 10px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.navbar-nav {
+  float: none !important;
+  width: 300px;
+  margin: 0 auto !important;
+}
+
+.navbar-header {
+  clear: both;
+}
+
+.navbar-header {
+  text-align: center;
+}
+
+.navbar .container {
+  text-align: center;
+}
+
+/* NAVBAR COLLAPSE UNDER 375px */
+@media (min-width: 375px) {
+  .navbar-nav {
+    width: 350px;
+  }
+
+  .navbar-nav>li>a {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+}
+
+/* NAVBAR COLLAPSE UNDER 520px */
+@media (min-width: 520px) {
+  .navbar-right {
+    float: right !important;
+  }
+
+  .navbar-header {
+    float: left;
+  }
+
+  .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .navbar-nav {
+    margin: 0;
+    width: auto;
+  }
+
+  .navbar-nav li a {
+    font-size: 22px;
+  }
+
+  .navbar-nav>li>a {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 
 /* MAIN PAGE
 ====================== */
@@ -432,6 +512,114 @@ input[type='checkbox']:checked + label {
   float: right;
 }
 
+/* APP NAVBAR
+====================== */
+// @media (min-width: @screen-sm) {
+
+// .navbar-inner-app .navbar-fixed-top {
+//     min-height: 80px 
+// }
+
+.navbar-inner-app .navbar-header img {
+  vertical-align: none;
+  margin-top: -15px;
+}
+
+.navbar-inner-app {
+  line-height: 80px !important;
+  background-color: @white;
+}
+
+.navbar-inner-app .navbar-brand,
+.navbar-inner-app .navbar-nav li a {
+  height: 80px;
+  line-height: 80px !important;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.navbar-inner-app .nav-center {
+  display: inline-block;
+  float:none;
+  vertical-align: top;
+}
+
+.navbar-inner-app .container {
+  text-align: center;
+  position: relative;
+}
+
+.navbar-inner-app .navbar-header {
+  position: absolute;
+  float: none;
+}
+
+.navbar-inner-app .navbar-right {
+  position: absolute;
+  right: 0;
+  display: inline-block;
+}
+
+a.config-btn {
+  padding-right: 5px !important;
+  padding-top: 3px !important;
+}
+
+.navbar-inner-app .login a {
+  padding-left: 5px !important;
+}
+
+a.config-btn:hover {
+  color: @cinnabar;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+a.config-btn:active {
+  color: @cinnabar;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.section-icon {
+  // display: block;
+  position: absolute;
+  // line-height: 10px;
+  // width: 24px;
+  font-size: 26px;
+  left: 50%;
+  margin-left: -13px;
+  margin-top: 14px;
+  color: @disabled-menu-color;
+}
+
+.nav-center a {
+  text-align: center;
+  position: relative;
+}
+
+.section-title {
+  line-height: 110px;
+  font-size: 18px;
+  color: @disabled-menu-color;
+}
+
+.active>.section-icon ,
+.active>.section-title {
+  color: @black;
+}
+
+.navbar-inner-app .active {
+  color: @cinnabar;
+  text-decoration: none;
+  box-shadow: inset 0 -3px 0 @cinnabar;
+}
+
+/* ANIMATIONS
+====================== */
+
 /* The starting CSS styles for the enter animation */
 #bkg-gray.ng-enter {
   transition:0.3s ease all;
@@ -498,82 +686,6 @@ input[type='checkbox']:checked + label {
   animation: rubberBand 0.6s both ease;
 }
 
-/* DISABLE NAVBAR COLLAPSE
-====================== */
-
-.navbar-collapse.collapse {
-  display: block!important;
-}
-
-.navbar-nav>li {
-  float: left !important;
-}
-
-.navbar-nav>li>a {
-  padding-bottom: 10px;
-  padding-left: 6px;
-  padding-right: 6px;
-}
-
-.navbar-nav {
-  float: none !important;
-  width: 300px;
-  margin: 0 auto !important;
-}
-
-.navbar-header {
-  clear: both;
-}
-
-.navbar-header {
-  text-align: center;
-}
-
-.navbar .container {
-  text-align: center;
-}
-
-/* NAVBAR COLLAPSE UNDER 375px */
-@media (min-width: 375px) {
-  .navbar-nav {
-    width: 350px;
-  }
-
-  .navbar-nav>li>a {
-    padding-left: 13px;
-    padding-right: 13px;
-  }
-}
-
-/* NAVBAR COLLAPSE UNDER 520px */
-@media (min-width: 520px) {
-  .navbar-right {
-    float: right !important;
-  }
-
-  .navbar-header {
-    float: left;
-  }
-
-  .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
-    margin-right: 0;
-    margin-left: 0;
-  }
-
-  .navbar-nav {
-    margin: 0;
-    width: auto;
-  }
-
-  .navbar-nav li a {
-    font-size: 22px;
-  }
-
-  .navbar-nav>li>a {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
 
 /* GENERAL SCREEN QUERIES
 ====================== */

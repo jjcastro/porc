@@ -1,28 +1,46 @@
 
 <!-- NAVBAR -->
-<header>
+<header><div class="navbar-inner-app">
 	<div class="navbar">
 		<div class="container">
-			<div class="navbar-inner-app">
+			
 				<div class="navbar-header">
 					<a href="/">
 					<img src="assets/img/porc-logo-header.png">
 					</a>
 				</div> 
 
-
-
 				<ul class="nav navbar-nav nav-center">
-					<li ><a href="#" class="centered">Overview</a></li>
-					<li ><a href="#">Entries</a></li>
-					<li ><a href="#">Budgets</a></li>
-					<li ><a href="#" class="centered">Reports</a></li>
+					<li >
+						<a href="#" class="{{ app.isActive('app.overview') }}">
+							<span class="glyphicon glyphicon-dashboard section-icon"></span>
+							<span class="section-title">Overview</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="{{ app.isActive('app.entries') }}">
+							<span class="glyphicon glyphicon-credit-card section-icon"></span>
+							<span class="section-title">Entries</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="{{ app.isActive('app.budgets') }}">
+							<span class="glyphicon glyphicon-briefcase section-icon"></span>
+							<span class="section-title">Budgets</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="{{ app.isActive('app.reports') }}">
+							<span class="glyphicon glyphicon-signal section-icon"></span>
+							<span class="section-title">Reports</span>
+						</a>
+					</li>
 					</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right" style="">
 					
-					<li ><a href="/#" ng-click="main.openDialogB()"><span class="glyphicon glyphicon-cog"></span></a></li>
+					<li ><a href="/#" ng-click="main.openDialogB()" class="config-btn"><span class="glyphicon glyphicon-cog"></span></a></li>
 					<li class="login" ng-if="!main.loggedIn"><a ui-sref="login">
 						<span class="login-btn">Login</span>
 					</a></li>
