@@ -1,0 +1,13 @@
+<div class="jumbotron text-center">
+	<h1>Welcome to Porc!</h1>
+
+	<div ng-if="!main.loggedIn">
+		<p>Login to use Porc.</p>
+		<a href="/login" class="btn btn-primary">Login</a>
+	</div>
+
+	<div ng-if="main.loggedIn">
+		<p>See the overview.</p>
+		<a href="/overview" class="btn btn-primary">Overview</a>
+	</div>
+</div>

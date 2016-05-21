@@ -12,25 +12,25 @@
 
 				<ul class="nav navbar-nav nav-center">
 					<li >
-						<a href="#" class="{{ app.isActive('app.overview') }}">
+						<a href="#" ui-sref="app.overview" class="{{ app.isActive('app.overview') }}">
 							<span class="glyphicon glyphicon-dashboard section-icon"></span>
 							<span class="section-title">Overview</span>
 						</a>
 					</li>
 					<li>
-						<a href="#" class="{{ app.isActive('app.entries') }}">
+						<a href="#" ui-sref="app.entries" class="{{ app.isActive('app.entries') }}">
 							<span class="glyphicon glyphicon-credit-card section-icon"></span>
 							<span class="section-title">Entries</span>
 						</a>
 					</li>
 					<li>
-						<a href="#" class="{{ app.isActive('app.budgets') }}">
+						<a href="#" ui-sref="app.budgets" class="{{ app.isActive('app.budgets') }}">
 							<span class="glyphicon glyphicon-briefcase section-icon"></span>
 							<span class="section-title">Budgets</span>
 						</a>
 					</li>
 					<li>
-						<a href="#" class="{{ app.isActive('app.reports') }}">
+						<a href="#" ui-sref="app.reports" class="{{ app.isActive('app.reports') }}">
 							<span class="glyphicon glyphicon-signal section-icon"></span>
 							<span class="section-title">Reports</span>
 						</a>
@@ -41,10 +41,7 @@
 				<ul class="nav navbar-nav navbar-right" style="">
 					
 					<li ><a href="/#" ng-click="main.openDialogB()" class="config-btn"><span class="glyphicon glyphicon-cog"></span></a></li>
-					<li class="login" ng-if="!main.loggedIn"><a ui-sref="login">
-						<span class="login-btn">Login</span>
-					</a></li>
-					<li class="login" ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">
+					<li class="login"><a href="#" ng-click="main.doLogout()">
 						<span class="login-btn">Logout</span>
 					</a></li>
 				</ul>

@@ -36,29 +36,44 @@ angular.module('app.routes', ['ui.router'])
       templateUrl: "app/views/pages/app.tpl.html"
     })
 		
-  		// show all users
-  		.state('app.overview', {
-        url         : "/overview",
-  			templateUrl : "app/views/pages/app/overview/main.tpl.html",
-  			controller  : "overviewController",
-  			controllerAs: "overview"
-  		})
+		// show all users
+		.state('app.overview', {
+      url         : "/overview",
+			templateUrl : "app/views/pages/app/overview/main.tpl.html",
+			controller  : "overviewController",
+			controllerAs: "overview"
+		})
 
-  		// form to create a new transaction
-  		// same view as edit page
-  		.state('createtransaction', {
-        url         : "/transactions/create",
-  			templateUrl : "app/views/pages/app/transactions/single.tpl.html",
-  			controller  : "transactionCreateController",
-  			controllerAs: "transaction"
-  		})
+    .state('app.entries', {
+      url         : "/entries",
+      templateUrl : "app/views/pages/app/entries/main.tpl.html"
+    })
 
-  		// page to edit a transaction
-  		.state('edittransaction', {
-        url         : "/transactions/:tran_id",
-  			templateUrl : "app/views/pages/app/transactions/single.tpl.html",
-  			controller  : "transactionEditController",
-  			controllerAs: "transaction"
-  		});
+    .state('app.budgets', {
+      url         : "/budgets",
+      templateUrl : "app/views/pages/app/budgets/main.tpl.html"
+    })
+
+    .state('app.reports', {
+      url         : "/reports",
+      templateUrl : "app/views/pages/app/reports/main.tpl.html"
+    })
+
+		// form to create a new transaction
+		// same view as edit page
+		.state('createtransaction', {
+      url         : "/entries/create",
+			templateUrl : "app/views/pages/app/entries/single.tpl.html",
+			controller  : "transactionCreateController",
+			controllerAs: "transaction"
+		})
+
+		// page to edit a transaction
+		.state('edittransaction', {
+      url         : "/entries/:tran_id",
+			templateUrl : "app/views/pages/app/entries/single.tpl.html",
+			controller  : "transactionEditController",
+			controllerAs: "transaction"
+		});
 
 });

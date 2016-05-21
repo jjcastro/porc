@@ -9,6 +9,5 @@ angular.module('appCtrl', [])
     return active ? 'active' : '';
   };
 
-  
 
 });
