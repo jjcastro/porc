@@ -26,33 +26,6 @@ Porc helps you budget. Create budgets for different spending categories and log 
 4. To start the node server `node server.js`
 5. Visit the application in your browser: [http://localhost:8080](http://localhost:8080)
 
-## API documentation
-
-### Users and authentication
-| Use case        | Node API               | Angular Svc Func |
-|-----------------|------------------------|------------------|
-| create user     | POST /api/users        | create( { name, username, password } ) |
-| authenticate    | POST /api/users/auth   | login( { username, password } ) |
-
-### Me (user info)
-
-| Use case        | Node API               | Angular Svc Func |
-|-----------------|------------------------|------------------|
-| user info       | GET /api/me            | get() |
-| update user     | PUT /api/me            | update( { [name], [username], [password] } ) |
-| delete user     | DELETE /api/me         | delete() |
-
-### Transactions
-
-| Use case             | Node API                          | Angular Svc Func |
-|----------------------|-----------------------------------|------------------|
-| list transactions    | GET /api/transactions             | all() |
-| create transaction   | POST /api/transactions            | create() |
-| single transaction   | GET /api/transactions/:tran_id    | get(id) |
-| update a transaction | PUT /api/transactions/:tran_id    | update(id) |
-| delete transaction   | DELETE /api/transactions/:tran_id | delete(id) |
-
-
 ## Roadmap (features and things to come)
 
 * iOS transcation oriented app with smart predictions (time, place, etc).
