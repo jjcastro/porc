@@ -18,16 +18,16 @@ angular.module('overviewCtrl', ['transactionService'])
       vm.transactions = data;
     });
 
-  // function to delete a user
+  // function to delete a transacion
   vm.deleteTransaction = function(id) {
     vm.processing = true;
 
     Transaction.delete(id)
       .success(function(data) {
 
-        // get all users to update the table
+        // get all transacions to update the table
         // you can also set up your api 
-        // to return the list of users with the delete call
+        // to return the list of transacions with the delete call
         Transaction.get()
           .success(function(data) {
             vm.processing = false;

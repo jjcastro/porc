@@ -9,6 +9,8 @@
 @bermuda: #7DE7C8;
 @cinnabar: #EC3F3C;
 
+@cinnabar-dark: darken(color(@cinnabar), 20%);
+
 @disabled-menu-color: #cccccc;
 
 @brandon: 'brandon-grotesque';
@@ -40,24 +42,9 @@ a {
   text-decoration: none;
 }
 
-a:link, a:visited {
+ a:link, a:visited, a:hover, a:active {
   text-decoration: none;
-  color: @black;
-  background-color: transparent;
-}
-
-a:hover {
-  color: @cinnabar;
-  text-decoration: none;
-  box-shadow: inset 0 -3px 0 @cinnabar;
-  background-color: transparent;
-}
-
-a:active {
-  color: @cinnabar;
-  text-decoration: none;
-  box-shadow: inset 0 -3px 0 @cinnabar;
-  background-color: transparent;
+  // color: inherit;
 }
 
 h1, h2, h3 {
@@ -81,6 +68,7 @@ header .navbar-header img {
 
 .navbar {
   border-bottom: 1px solid @gray;
+  background-color: @light-gray;
 }
 
 .navbar-brand,
@@ -112,7 +100,7 @@ header .navbar-header img {
 }
 
 .login-btn:hover {
-  background-color: darken(color(@cinnabar), 20%);
+  background-color: @cinnabar-dark;
 }
 
 /* DISABLE NAVBAR COLLAPSE
@@ -195,6 +183,33 @@ header .navbar-header img {
 
 /* MAIN PAGE
 ====================== */
+
+.navbar a:link, .navbar a:visited,
+.presentation a:link, .presentation a:visited {
+  text-decoration: none;
+  color: @black;
+  background-color: transparent;
+}
+
+.navbar a:hover, .presentation a:hover {
+  color: @cinnabar;
+  text-decoration: none;
+  box-shadow: inset 0 -3px 0 @cinnabar;
+  background-color: transparent;
+}
+
+.navbar a:active, .presentation a:active {
+  color: @cinnabar;
+  text-decoration: none;
+  box-shadow: inset 0 -3px 0 @cinnabar;
+  background-color: transparent;
+}
+
+.presentation {
+  background-color: @light-gray;
+  margin-top: -20px;
+  padding-top: 20px;
+}
 
 .bkg-highlight {
   background-color: @light-gray;
@@ -528,7 +543,7 @@ input[type='checkbox']:checked + label {
   margin-top: -15px;
 }
 
-.navbar-inner-app {
+.navbar-inner-app .navbar {
   line-height: 80px !important;
   background-color: @white;
 }
@@ -619,6 +634,94 @@ a.config-btn:active {
   color: @cinnabar;
   text-decoration: none;
   box-shadow: inset 0 -3px 0 @cinnabar;
+}
+
+/* APP - OVERVIEW
+====================== */
+
+.app-main {
+  background-color: @white;
+  font-family: @brandon, sans-serif;
+}
+
+.filters {
+  height: 65px;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #CCCCCC;
+  margin-top: -20px;
+  padding-top: 11.5px;
+  position: relative;
+}
+
+.main-picker {
+  background-color: @white;
+  width: 250px;
+  text-align: center;
+  font-weight: 500;
+  line-height: 42px;
+  border-radius: 6px;
+  margin: 0 auto;
+}
+
+.main-picker span.glyphicon {
+  font-size: 16px;
+  margin-top: 13px;
+}
+
+.main-picker a:hover {
+ color: @cinnabar;
+}
+
+.main-picker span.glyphicon-chevron-right {
+  float: right;
+  margin-right: 5px;
+}
+
+.main-picker span.glyphicon-chevron-left {
+  float: left;
+  margin-left: 5px;
+}
+
+.filters .input-group {
+  width: 100px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.rounded-btn {
+  border-radius: 12px;
+  background-color: @cinnabar;
+  margin-left: 20px;
+  color: @white;
+  height: auto;
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: relative;
+}
+
+.rounded-btn span.glyphicon {
+  font-size: 30px;
+  // line-height: 50px;
+  position: absolute;
+  left: 50%;
+  margin-left: -14px;
+  top: 50%;
+  margin-top: -16px;
+}
+
+.rounded-btn:hover {
+  color: @white;
+  background-color: @cinnabar-dark;
+  box-shadow: none;
+}
+
+a.rounded-btn:link,
+a.rounded-btn:visited,
+a.rounded-btn:hover,
+a.rounded-btn:active {
+  color: @white;
 }
 
 /* ANIMATIONS
