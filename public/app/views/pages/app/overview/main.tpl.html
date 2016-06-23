@@ -11,46 +11,59 @@
 	</div> -->
 </div>
 
-<h1>
-	Latest entries
-</h1>
+<div class="container">
 
-<a href="/entries/create" class="rounded-btn">
-	<span class="glyphicon glyphicon-plus"></span>
-</a>
+	<div class="card col-md-6" id="latest-entries">
+		<div class="card-highlight row"></div>
+		<div class="card-body">
+			<h1>
+				Latest entries
+			</h1>
 
-<div class="text-center" ng-show="overview.processing">
-	<span class="glyphicon glyphicon-repeat spinner"></span>
-	<p>Loading overview...</p>
+			<a href="/entries/create" class="rounded-btn">
+				<span class="glyphicon glyphicon-plus"></span>
+			</a>
+
+			<hr class="full">
+
+			<div class="text-center" ng-show="overview.processing">
+				<span class="glyphicon glyphicon-repeat spinner"></span>
+				<p>Loading overview...</p>
+			</div>
+
+			<div ng-show="overview.transactions">
+				<!-- <thead>
+					<tr>
+						<th>Amount</th>
+						<th>isExpense</th>
+						<th>Description</th>
+						<th>Name</th>
+						<th>Tags</th>
+						<th>Date</th>
+						<th class="col-sm-2"></th>
+					</tr>
+				</thead> -->
+				<div ng-repeat="tran in overview.transactions">
+					<div>{{tran.date}}</div>
+					<span style="float: right">{{tran.amount}}</span>
+					<!-- <span>{{tran.isExpense}}</span> -->
+					<span>{{tran.description}}</span>
+					<span>{{tran.name}}</span>
+					
+					<div class="tags">
+						<span ng-repeat="tag in tran.tags">{{tag.name}} </span>
+					</div>
+					<hr class="full">
+					
+
+					<!-- <span class="col-sm-2">
+						<a ng-href="/entries/{{ tran._id }}" class="btn btn-primary">Edit</a>
+						<a href="#" ng-click="user.deleteTransaction(tran._id)" class="btn btn-danger">Delete</a>
+					</span> -->
+				</div>
+			</div>
+
+
+		</div>
+	</div>
 </div>
-
-<table class="table" ng-show="overview.transactions">
-	<thead>
-		<tr>
-			<th>Amount</th>
-			<th>isExpense</th>
-			<th>Description</th>
-			<th>Name</th>
-			<th>Tags</th>
-			<th>Date</th>
-			<th class="col-sm-2"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="tran in overview.transactions">
-			
-			<td>{{tran.amount}}</td>
-			<td>{{tran.isExpense}}</td>
-			<td>{{tran.description}}</td>
-			<td>{{tran.name}}</td>
-			<td>
-				<span ng-repeat="tag in tran.tags">{{tag.name}} </span></td>
-			<td>{{tran.date}}</td>
-
-			<td class="col-sm-2">
-				<a ng-href="/entries/{{ tran._id }}" class="btn btn-primary">Edit</a>
-				<a href="#" ng-click="user.deleteTransaction(tran._id)" class="btn btn-danger">Delete</a>
-			</td>
-		</tr>
-	</tbody>
-</table>

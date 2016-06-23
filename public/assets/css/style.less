@@ -690,25 +690,29 @@ a.config-btn:active {
 }
 
 .rounded-btn {
-  border-radius: 12px;
+  border-radius: 6px;
   background-color: @cinnabar;
   margin-left: 20px;
   color: @white;
   height: auto;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: block;
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 14px;
+  margin-right: 5px;
 }
 
 .rounded-btn span.glyphicon {
-  font-size: 30px;
+  font-size: 24px;
   // line-height: 50px;
   position: absolute;
   left: 50%;
-  margin-left: -14px;
+  margin-left: -11px;
   top: 50%;
-  margin-top: -16px;
+  margin-top: -13px;
 }
 
 .rounded-btn:hover {
@@ -722,6 +726,35 @@ a.rounded-btn:visited,
 a.rounded-btn:hover,
 a.rounded-btn:active {
   color: @white;
+}
+
+.card {
+  margin-top: 5px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.card-highlight {
+  background-color: @white;
+  height: 53px;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+.card#latest-entries {
+  background-color: @light-gray;
+  margin-right: 20px;
+}
+
+.card-body {
+  position: relative;
+  z-index: 2;
+}
+
+.card hr.full {
+  border-top: 1px solid #ccc;
+  margin: 10px -15px;
 }
 
 /* ANIMATIONS
