@@ -1,6 +1,7 @@
-var jwt  = require('jsonwebtoken');
-var User = require('../../models/user');
-var config = require('../../../config');
+var jwt     = require('jsonwebtoken');
+var bcrypt  = require('bcrypt-nodejs');
+var query   = require('pg-query');
+var config  = require('../../../config');
 var express = require('express');
 
 // super secret for creating tokens
@@ -12,19 +13,16 @@ var router = express.Router();
 // ----------------------------------------------------
 router.post('/', function(req, res) {
   
-  var user = new User();    // create a new instance of the User model
-  user.name = req.body.name;  // set the users name (comes from the request)
-  user.username = req.body.username;  // set the users username (comes from the request)
-  user.password = req.body.password;  // set the users password (comes from the request)
+  var user = {   
+    name: req.body.name,
+    username: req.body.username,
+    password: bcrypt.hashSync(req.body.password)
+  };
 
-  user.save(function(err) {
-    if (err) {
-      // duplicate entry
-      if (err.code == 11000) 
-        return res.json({ success: false, message: 'A user with that username already exists. '});
-      else 
-        return res.send(err);
-    }
+  var sql = 'insert into users (username, name, password) values ($1,$2,$3)';
+
+  query(sql, [user.username, user.name, user.password], function(err, rows) {
+    if (err) return res.send(err);
 
     // return a message
     res.json({ message: 'User created!' });
@@ -35,14 +33,11 @@ router.post('/', function(req, res) {
 // ----------------------------------------------------
 router.post('/auth', function(req, res) {
 
-  // find the user
-  User.findOne({
-    username: req.body.username
-  }).select('name username password').exec(function(err, user) {
+  var sql = 'SELECT * FROM users WHERE username = $1';
+    
+  query.first(sql, req.decoded.username, function(err, user) {
+    if (err) res.send(err);
 
-    if (err) throw err;
-
-    // no user with that username was found
     if (!user) {
       res.json({ 
         success: false, 
@@ -51,7 +46,8 @@ router.post('/auth', function(req, res) {
     } else if (user) {
 
       // check if password matches
-      var validPassword = user.comparePassword(req.body.password);
+      var validPassword = bcrypt.compareSync(req.body.password, user.password);
+
       if (!validPassword) {
         res.json({ 
           success: false, 
@@ -76,9 +72,7 @@ router.post('/auth', function(req, res) {
           token: token
         });
       }   
-
     }
-
   });
 });
 

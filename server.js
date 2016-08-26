@@ -9,9 +9,12 @@ var morgan     = require('morgan'); 		 // used to see requests
 var mongoose   = require('mongoose');
 var config 	   = require('./config');
 var path 	     = require('path'); 
+var pg         = require('pg'); 
+var query      = require('pg-query'); 
 
 // APP CONFIGURATION
 // ==============================================
+
 // use body parser so we can grab information from POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -27,12 +30,18 @@ app.use(function(req, res, next) {
 // log all requests to the console 
 app.use(morgan('dev'));
 
-// connect to our database (hosted on modulus.io)
+// connect to our database
 mongoose.connect(config.database); 
 
 // set static files location
 // used for requests that our frontend will make
 app.use(express.static(__dirname + '/public'));
+
+// enable SSL on postgres requests
+pg.defaults.ssl = true;
+
+// configure URL for Heroku postgres
+query.connectionParameters = process.env.DATABASE_URL || config.postgresUrl;
 
 // ROUTES FOR OUR API
 // ==============================================

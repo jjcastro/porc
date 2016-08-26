@@ -1,5 +1,6 @@
 var express = require('express');
-var User = require('../../models/user');
+var query   = require('pg-query');
+var bcrypt  = require('bcrypt-nodejs');
 
 var router = express.Router();
 
@@ -9,48 +10,57 @@ router.route('/')
 
   // get the user with that id
   .get(function(req, res) {
-    User.find({
-      username: req.decoded.username
-    }, function(err, user) {
+
+    var sql = 'SELECT name, username FROM users WHERE username = $1';
+    
+    query.first(sql, req.decoded.username, function(err, rows) {
       if (err) res.send(err);
 
       // return that user
-      res.json(user);
+      res.json(rows);
     });
   })
 
   // update the user with this id
   .put(function(req, res) {
-    User.find({
-      username: req.decoded.username
-    }, function(err, user) {
 
+    var sqlSel = 'SELECT * FROM users WHERE username = $1';
+    
+    query.first(sqlSel, req.decoded.username, function(err, rows) {
       if (err) res.send(err);
 
-      // set the new user information if it exists in the request
-      if (req.body.name) user.name = req.body.name;
-      if (req.body.username) user.username = req.body.username;
-      if (req.body.password) user.password = req.body.password;
+      var user = {
+        name:     req.body.name || rows.name,
+        username: rows.username,
+        password: rows.password
+      };
 
-      // save the user
-      user.save(function(err) {
+      // if a password is in the req, hash it and replace it
+      if (req.body.password) {
+        user.password = bcrypt.hashSync(req.body.password);
+      }
+
+      var sqlUpd = 'UPDATE users ' +
+                   'SET username = $1, name = $2, password = $3 ' +
+                   'WHERE username = $1';
+
+      query(sqlUpd, [user.username, user.name, user.password], function(err, rows) {
         if (err) res.send(err);
 
-        // return a message
-        res.json({ message: 'User updated!' });
+        // return success
+        res.json({ message: 'Successfully updated!' });
       });
-
     });
   })
 
   // delete the user and all associated transactions
   .delete(function(req, res) {
-    User.remove({
-      username: req.decoded.username
-    }, function(err, user) {
+    var sql = 'DELETE FROM users WHERE username = $1';
 
+    query(sql, req.decoded.username, function(err, rows) {
       if (err) res.send(err);
 
+      // return that user
       res.json({ message: 'Successfully deleted' });
     });
   });
