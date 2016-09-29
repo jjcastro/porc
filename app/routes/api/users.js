@@ -35,7 +35,7 @@ router.post('/auth', function(req, res) {
 
   var sql = 'SELECT * FROM users WHERE username = $1';
     
-  query.first(sql, req.decoded.username, function(err, user) {
+  query.first(sql, req.body.username, function(err, user) {
     if (err) res.send(err);
 
     if (!user) {

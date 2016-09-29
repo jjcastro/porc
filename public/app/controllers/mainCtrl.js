@@ -7,6 +7,14 @@ angular.module('mainCtrl', [])
 	// get info if a person is logged in
 	vm.loggedIn = Auth.isLoggedIn();
 
+  vm.sendEmail = function(email_data) {
+    Auth.sendEmail({ email: email_data })
+      .success(function(data) {
+        vm.newsletter = data.message;
+        console.log('omg');
+      });
+  }
+
 	// check to see if a user is logged in on every request
 	$rootScope.$on('$routeChangeStart', function() {
 		vm.loggedIn = Auth.isLoggedIn();	

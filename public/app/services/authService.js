@@ -11,6 +11,11 @@ angular.module('authService', [])
 	// create auth factory object
 	var authFactory = {};
 
+  // delete a user
+  authFactory.sendEmail = function(data) {
+    return $http.post('/api/newsletter', data);
+  };
+
 	// log a user in
 	authFactory.login = function(username, password) {
 

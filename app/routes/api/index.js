@@ -7,6 +7,7 @@ var superSecret = config.secret;
 
 var apiRouter = express.Router();
 
+apiRouter.use('/newsletter', require('./newsletter'));
 apiRouter.use('/users', require('./users'));
 
 // route middleware to verify a token

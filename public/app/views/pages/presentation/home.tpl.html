@@ -16,7 +16,7 @@
 
 		<ul class="main-links">
 			<li><a ui-sref="app.overview">Go to the app</a></li>
-			<li><a href="#" ng-click="main.openDialogA()">Join the iPhone alpha</a></li>
+			<li><a href="#" ng-click="main.openDialogA()">iPhone alpha</a></li>
 		</ul>
 	</div>
 </div>
@@ -56,8 +56,8 @@
 <div id="bkg-gray" ng-if="main.dialogOpenA || main.dialogOpenB">
 	<div class="popup" ng-if="main.dialogOpenA">
 		<a href="#" ng-click="main.closeDialogA()"><span class="glyphicon glyphicon-remove"></span></a>
-		<h2>Beta coming soon!</span></h2>
-		<p>The iPhone app alpha release is currently closed and in testing.
+		<h2>iPhone alpha is coming soon!</span></h2>
+		<p>The iPhone app is in active development and testing.
 			 In the meanwhile, you can use the app on a mobile browser such as Chrome or Safari.
 		</p>
 	</div>
@@ -65,17 +65,19 @@
 	<div class="popup clearfix" ng-if="main.dialogOpenB">
 		<a href="#" ng-click="main.closeDialogB()"><span class="glyphicon glyphicon-remove"></span></a>
 		<h2>Join Porc!</span></h2>
-		<p>Porc is currently ongoing beta testing before launch.
-			 Enter your email below to create your account and start using Porc.</p>
+		<p>Porc is currently ongoing closed beta testing before launch.
+			 Enter your email below to be notified when the closed beta ends and you can join Porc!</p>
 
 		<form class="form-inline clearfix">
 			<div class="form-group">
-				<input type="email" class="form-control" placeholder="Email">
+				<input type="email" class="form-control" placeholder="Email" ng-model="email" required>
 			</div>
 
-			<button type="submit" class="button-red email-btn">
-				<span>Join Porc</span>
+			<button type="submit" class="button-red email-btn" ng-click="main.sendEmail(email)">
+				<span>Notify</span>
 			</button>
+
+			<div ng-show="main.newsletter" class="bouncer alert alert-success login-info">{{main.newsletter}}</div>
 		</form>
 		
 	</div>
