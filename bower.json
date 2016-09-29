@@ -21,6 +21,7 @@
     "angular-animate": "^1.5.5",
     "animate.css": "animate-css#^3.5.1",
     "angular-ui-router": "^0.2.18",
-    "ui-bootstrap": "^2.1.4"
+    "ui-bootstrap": "^2.1.4",
+    "angular-bootstrap": "^2.1.4"
   }
 }
